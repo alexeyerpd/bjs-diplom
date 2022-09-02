@@ -1,23 +1,25 @@
-'use strict';
+"use strict";
 
 const form = new UserForm();
 
+// Логин
 form.loginFormCallback = function loginFormCallback(data) {
-    ApiConnector.login(data, (response) => {
-        if (response.success) {
+    ApiConnector.login(data, ({ success, error }) => {
+        if (success) {
             location.reload();
         } else {
-            this.setLoginErrorMessage(response.error);
+            this.setLoginErrorMessage(error);
         }
     });
-}
+};
 
+// Регистрация
 form.registerFormCallback = function registerFormCallback(data) {
-    ApiConnector.register(data, (response) => {
-        if (response.success) {
+    ApiConnector.register(data, ({ success, error }) => {
+        if (success) {
             location.reload();
         } else {
-            this.setRegisterErrorMessage(response.error);
+            this.setRegisterErrorMessage(error);
         }
     });
-}
+};
